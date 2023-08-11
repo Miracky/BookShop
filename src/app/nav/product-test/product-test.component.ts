@@ -1,7 +1,8 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Nav } from '../nav';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { NavComponent } from '../nav.component';
+import { HttpClient} from '@angular/common/http';
+
 
 
 @Injectable()
@@ -11,25 +12,28 @@ import { NavComponent } from '../nav.component';
   templateUrl: './product-test.component.html',
   styleUrls: ['./product-test.component.css']
 })
-export class ProductTestComponent {
+export class ProductTestComponent implements OnInit{
 
-  filterText=""
+  filterText:any = ""
 
-  constructor(private alertifyService:AlertifyService){
-    
+  constructor(private alertifyService: AlertifyService, private http:HttpClient) {
+
   }
 
-  
+  path= "http://localhost:3000/products"
 
-  title="Products"
+  title = "Products"
 
-  products: Nav[]=[
-    {id:1, name:"Devlet", writer:"Platon",price:100,categoryId:1,imageUrl:"https://www.kaynakyayinlari.com/u/kaynakyayinlari/img/c/1/-/1-1389453255.jpg"},
-    {id:2, name:"Utopia", writer:"Thomes More",price:100,categoryId:2,imageUrl:"https://i.dr.com.tr/cache/500x400-0/originals/0002004772001-1.jpg"},
-  ]
+  products!: Nav[];
+
+  ngOnInit(): void {
+      this.http.get<Nav[]>(this.path).subscribe(data=>{
+        this.products= data
+      });
+  }
 
 
-  addToCart(nav: { name: string; }){
+  addToCart(nav: { name: string; }) {
     this.alertifyService.success(nav.name + " book added to cart")
   }
 }

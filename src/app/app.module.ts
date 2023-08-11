@@ -9,6 +9,7 @@ import { ProductComponent } from './product/product.component';
 import { ProductFilterPipe } from './nav/product-test/product-filter.pipe';
 import { ProductTestComponent } from './nav/product-test/product-test.component';
 import { AlertifyService } from './services/alertify.service';
+import { HttpClientModule } from '@angular/common/http'
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AlertifyService } from './services/alertify.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [AlertifyService],
   bootstrap: [AppComponent]
