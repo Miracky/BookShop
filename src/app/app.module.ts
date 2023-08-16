@@ -10,6 +10,7 @@ import { ProductFilterPipe } from './nav/product-test/product-filter.pipe';
 import { ProductTestComponent } from './nav/product-test/product-test.component';
 import { AlertifyService } from './services/alertify.service';
 import { HttpClientModule } from '@angular/common/http'
+import { ProductTestService } from './services/product-test.service';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http'
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AlertifyService],
+  providers: [AlertifyService,ProductTestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
