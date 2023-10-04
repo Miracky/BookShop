@@ -22,16 +22,19 @@ export class ProductTestComponent implements OnInit {
 
   }
 
-
-
   title = "Products"
 
   products!: Nav[];
 
   ngOnInit(): void {
-    this.productTestService.getProducts().subscribe(data => {
-      this.products = data
-    });
+
+    this.activatedRoute.params.subscribe(params=>{
+      this.productTestService.getProducts(params["categoryId"]).subscribe(data => {
+        this.products = data
+      });
+    })
+
+    
   }
 
 
