@@ -11,11 +11,13 @@ export class ProductTestService {
   path= "http://localhost:3000/products"
 
 
-  getProducts(categoryId: any):Observable<Nav[]>{
+  getProducts(categoryId:number):Observable<Nav[]>{
 
     let newPath = this.path;
-    if(categoryId)
+    if(categoryId){
+      newPath = newPath + "?categoryId=" + categoryId
+    }
     
-    return this.http.get<Nav[]>(this.path + "?categoryId=" + categoryId);
+    return this.http.get<Nav[]>(this.path );
   }
 }
